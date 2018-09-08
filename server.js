@@ -13,9 +13,10 @@ app.use(express.static("public"));
 
 var io = socket(server);
 
+var users = {};
+
 io.on("connection", function(socket) {
     console.log("New connection made: " + new Date());
-
 
     /// Check for nickname;
     socket.on("check-for-nickname", (data) => {
@@ -34,13 +35,22 @@ io.on("connection", function(socket) {
         }
 
         /// Good nickname.
+        /// Add socket's id to user object.
         socket.emit("valid-nickname");
-    
+        users[socket.id] = {
+            name: data.nickname,
+        };
+        setTimeout(function() {
+            io.emit("user-connected-chat", {onlineUsers: users, userId: socket.id});
+            socket.emit("acquire-online-users", {onlineUsers: users, userId: socket.id});
+        }, 100);
     });
 
 
     /// On disconnect
     socket.on("disconnect", function() {
         console.log("Disconnection at: " + new Date());
+        delete users[socket.id];
+        socket.broadcast.emit("user-disconnect-chat", {userId: socket.id})
     });
 });

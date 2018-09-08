@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Knewave');
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One');
+
+/* 
+
+    Global
+
+*/
 
 * {
     margin: 0;
@@ -6,18 +13,22 @@
 
 html, body {
     height: 100%;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-body {
-    width: 100%;
-    background-color: #fffff0;
+#page {
+    display: flex;
+    /* https://stackoverflow.com/questions/90178/make-a-div-fill-the-height-of-the-remaining-screen-space */
+    flex-flow: column;
+    height: 100%;
+    background-color: #ed8917;
 }
 
 #header {
     width: 100%;
     height: 70px;
     background-color: #484a59;
-    position: absolute;
     text-align: center;
 }
 
@@ -30,3 +41,174 @@ body {
     margin: 0 auto;
 }
 
+/* 
+
+    LOGIN
+
+*/
+#login-section {
+    background-color: #ed8917;
+    width: 100%;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+#login-section__container {
+    width: 100%;
+    max-width: 600px;
+    min-width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#login-section__container__description {
+    color: #fffff0;
+    font-family: "Fredoka One";
+    font-size: 2em;
+}
+
+#login-section__container__login input[type="text"] {
+    width: 100%;
+    max-width: 200px;
+    min-width: 100px;
+    padding: 0.4em;
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-family: "Fredoka One";
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+#login-section__container__login button {
+    width: 100%;
+    max-width: 150px;
+    min-width: 100px;
+    padding: 0.4em;
+    margin-top: 0.5em;
+    font-size: 1.2em;
+    font-family: "Fredoka One";
+    border: none;
+    outline: none;
+    text-align: center;
+    color: #fffff0;
+    background-color: #484a59;
+    cursor: default;
+}
+
+#login-section__container__login button:hover {
+    background-color: #282634;
+    cursor: pointer;
+}
+
+#login-section__container__message {
+    font-family: "Fredoka One";
+    font-size: 1em;
+    height: 1em;
+    margin-top: 1em;
+    color: #fffff0;
+}
+
+/* 
+
+    Chatting Sidebar
+
+*/
+#chat {
+    background-color: #ed8917;
+    width: 100%;
+    flex: 1 1 auto;
+    position: relative;
+}
+
+#chat__wrapper {
+    /* https://stackoverflow.com/questions/46997189/why-height-100-doesnt-work */
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#chat__sidebar {
+    background-color: #fffff0;
+    width: 12em;
+    min-width: 8em;
+    max-width: 24em;
+    height: 100%;
+    border-right: 3px solid #d5e4c7;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    float: left;
+}
+
+#chat__sidebar__resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    transform: translate(75%, 0);
+    /* background-color: #48ff006b; */
+} #chat__sidebar__resize-handle:hover {
+    cursor: ew-resize;
+}
+
+#chat__sidebar__header {
+    display: block;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d5e4c7;
+    padding: 0.6em 0;
+    font-family: "Fredoka One";
+    font-size: 1.4em;
+    text-align: center;
+}
+
+#chat__sidebar__wrapper {
+    flex: 1 1 auto;
+    list-style: none;
+    overflow-y: auto;
+    margin: 4px 4px 4px 0;
+}
+
+#chat__sidebar__user-list {
+    padding: 0;
+    margin: 0;
+}
+
+.chat__sidebar__user-list__users {
+    font-family: "Fredoka One";
+    padding: 10px 0 10px 1em;
+    border-bottom: 1px solid #d5e4c7;
+} .chat__sidebar__user-list__users:hover {
+    background-color: #d5e4c7;
+    cursor: pointer;
+}
+
+#chat__sidebar ::-webkit-scrollbar {
+    width: 2px;
+} #chat__sidebar:hover ::-webkit-scrollbar {
+    width: 8px;
+} #chat__sidebar ::-webkit-scrollbar-track {
+    background-color: #484a59;
+} #chat__sidebar ::-webkit-scrollbar-thumb {
+    background-color: #ed8917;
+}
+
+
+
+
+/* 
+
+    Chatting main.
+
+*/
+#chat__main {
+    position: relative;
+    height: 100%;
+    background-color: #fffff0;
+}
